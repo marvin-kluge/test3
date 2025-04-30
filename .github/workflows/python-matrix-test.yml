@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install local repository
-        uses: ./.github/actions/install-local-repo
+        uses: "marvin-kluge/test3/.github/actions/install-local-repo"
       - name: Run Tests
         run: |
           pytest tests/
