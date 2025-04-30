@@ -1,0 +1,20 @@
+name: Install Local Repo
+description: Install local repository dependencies
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        pip install --upgrade pip
+        if [[ "${{ inputs.use_uv }}" == "true" ]]; then
+          pip install uv
+          INSTALL_CMD="uv pip install --system"
+        else
+          INSTALL_CMD="pip install"
+        fi
+        if test -e requirements.txt; then $INSTALL_CMD -r requirements.txt; fi
+        if test -e setup.py || test -e pyproject.toml; then $INSTALL_CMD -e .; fi
+      shell: bash
+inputs:
+  use_uv:
+    required: false
+    default: "false"
