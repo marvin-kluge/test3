@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: python-version: ${{ fromJson(inputs.python-versions) }}
+        python-version: ${{ fromJson(inputs.python-versions) }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
