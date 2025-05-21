@@ -2,17 +2,25 @@ name: Test on Multiple Python Versions
 
 on:
   workflow_call:
+    inputs:
+      python-version:
+        description: 'List of Python versions to test'
+        type: string
+        required: false
+        default: "['3.7','3.8', '3.9', '3.10', '3.11','3.12']"
+
+
   push:
-    branches: ['*']
+    branches: [ '*' ]
   pull_request:
-    branches: ['*']
+    branches: [ '*' ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-version: python-version: ${{ fromJson(inputs.python-versions) }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -24,3 +32,6 @@ jobs:
       - name: Run Tests
         run: |
           pytest tests/
+
+  inputs:
+    python-version:
