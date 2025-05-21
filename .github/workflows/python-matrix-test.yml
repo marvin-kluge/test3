@@ -8,6 +8,11 @@ on:
         type: string
         required: false
         default: '["3.8","3.9","3.10","3.11","3.12"]'
+      ubuntu-version:
+        description: ""
+        type: string
+        required: false
+        default: "ubuntu-latest"
   push:
     branches: [ '*' ]
   pull_request:
@@ -15,7 +20,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-${{inputs.ubuntu-version}}
     strategy:
       matrix:
         python-version: ${{ fromJson(inputs.python-version) }}
