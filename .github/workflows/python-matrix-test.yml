@@ -30,6 +30,3 @@ jobs:
       - name: Run Tests
         run: |
           pytest tests/
-
-  inputs:
-    python-version:
