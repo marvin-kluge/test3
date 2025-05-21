@@ -29,4 +29,5 @@ jobs:
         uses: "marvin-kluge/test3/.github/actions/install-local-repo@main"
       - name: Run Tests
         run: |
-          pytest tests/
+          pip install pytest && pytest tests/
+
