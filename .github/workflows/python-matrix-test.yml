@@ -35,4 +35,17 @@ jobs:
       - name: Run Tests
         run: |
           pip install pytest && pytest tests/
+  peter:
+    needs: test
+    runs-on: ubuntu-${{inputs.ubuntu-version}}
+    strategy:
+      matrix:
+        python-version: ${{ fromJson(inputs.python-version) }}
+
+    steps:
+      - name: hallo
+        run: python --version
+      - name: tschuess
+        run: echo tschuess
+
 
